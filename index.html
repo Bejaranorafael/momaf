@@ -1,295 +1,348 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MOMAF | Carpintería de Melamina Premium</title>
-    <style>
-        /* ESTILOS CORE & PALETA INDUSTRIAL (NEGRO, AZUL, MARRÓN) */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #0b0f19; 
-            color: #f3f4f6;
-            line-height: 1.6;
-            padding-bottom: 60px;
-        }
-        
-        /* CONTENEDOR GLOBAL */
-        .max-w-6xl {
-            max-width: 1140px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOMAF | Carpintería de Melamina a Medida</title>
+<meta name="description" content="Muebles a medida en melamina: cocinas, vestidores y placares. Elegí color, simulá tu mueble y pedí tu cotización por WhatsApp.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230b0f19'/><text x='50' y='68' font-size='52' font-weight='700' text-anchor='middle' fill='%23b07a4f' font-family='sans-serif'>M</text></svg>">
+<style>
+:root{
+  --bg:#0b0f19; --panel:rgba(255,255,255,.04); --line:rgba(255,255,255,.09);
+  --text:#f3f4f6; --muted:#a3abb8; --brown:#b07a4f; --brown-d:#825330; --blue:#4a90e2;
+  --sel:linear-gradient(135deg,#c9a27a,#a9814f); /* color elegido */
+  --nav-h:76px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding-bottom:90px}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
 
-        /* NAVEGACIÓN CON TRANSPARENCIA (GLASSMORPHISM) */
-        nav {
-            border-b: 1px solid rgba(255, 255, 255, 0.08);
-            background-color: rgba(11, 15, 25, 0.8);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            height: 80px;
-        }
-        .nav-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 100%;
-        }
-        .logo {
-            text-decoration: none;
-            color: #ffffff;
-            font-size: 20px;
-            font-weight: 700;
-            letter-spacing: 2px;
-        }
-        .logo span { color: #92623e; }
-        .nav-links { display: none; }
-        @media (min-width: 768px) {
-            .nav-links {
-                display: flex;
-                gap: 32px;
-            }
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: #9ca3af;
-            font-size: 14px;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        .nav-links a:hover { color: #4a90e2; }
-        
-        /* BOTONES PREMIUM */
-        .btn-premium {
-            background: linear-gradient(135deg, #825330, #92623e);
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 12px 20px;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .btn-premium:hover {
-            background: linear-gradient(135deg, #4a90e2, #357abd);
-            box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
-        }
+/* NAV */
+nav{position:sticky;top:0;z-index:50;height:var(--nav-h);background:rgba(11,15,25,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:100%}
+.logo{text-decoration:none;font-size:20px;font-weight:700;letter-spacing:3px}
+.logo span{color:var(--brown)}
+.links{display:none;gap:32px}
+.links a{text-decoration:none;color:var(--muted);font-size:14px;transition:color .2s}
+.links a:hover{color:var(--blue)}
+@media(min-width:768px){.links{display:flex}}
 
-        /* HÉROE / PRESENTACIÓN */
-        header {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-            padding: 60px 0;
-        }
-        @media (min-width: 768px) {
-            header {
-                display: grid;
-                grid-template-cols: 1fr 1fr;
-                align-items: center;
-                padding: 100px 0;
-            }
-        }
-        .tagline {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #4a90e2;
-            font-weight: 600;
-            display: block;
-            margin-bottom: 8px;
-        }
-        h1 {
-            font-size: 36px;
-            font-weight: 300;
-            line-height: 1.2;
-            color: #ffffff;
-            margin-bottom: 24px;
-        }
-        h1 span {
-            font-weight: 600;
-            background: linear-gradient(to right, #92623e, #4a90e2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .desc {
-            color: #9ca3af;
-            font-weight: 300;
-            margin-bottom: 32px;
-            max-w: 450px;
-        }
-        .link-cta {
-            color: #ffffff;
-            text-decoration: none;
-            border-bottom: 2px solid #92623e;
-            padding-bottom: 4px;
-            font-size: 14px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s;
-        }
-        .link-cta:hover { color: #4a90e2; border-color: #4a90e2; }
-        
-        /* CONTENEDORES CON TRANSPARENCIA */
-        .box-transparente {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 32px;
-            border-radius: 4px;
-            text-align: center;
-        }
-        .hero-img-placeholder {
-            aspect-ratio: 4/3;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
+.btn{display:inline-block;background:linear-gradient(135deg,var(--brown-d),var(--brown));color:#fff;text-decoration:none;font-size:13px;letter-spacing:.5px;padding:12px 22px;font-weight:600;border:0;cursor:pointer;border-radius:3px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .3s}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,var(--blue),#357abd);opacity:0;transition:opacity .35s}
+.btn>*,.btn{z-index:0}
+.btn:hover{box-shadow:0 6px 22px rgba(74,144,226,.35);transform:translateY(-1px)}
+.btn:hover::after{opacity:1}
+.btn span{position:relative;z-index:1}
 
-        /* SECCIONES COMPONENTES */
-        section {
-            padding: 80px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .section-title {
-            margin-bottom: 40px;
-        }
-        .section-title span {
-            font-size: 12px;
-            color: #4a90e2;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
-        }
-        .section-title h2 {
-            font-size: 28px;
-            font-weight: 300;
-            color: #ffffff;
-            margin-top: 8px;
-        }
+/* HERO */
+.hero{display:grid;gap:48px;padding:64px 0 80px;align-items:center}
+@media(min-width:900px){.hero{grid-template-columns:1fr 1fr;padding:96px 0 110px}}
+.tag{color:var(--blue);font-size:13px;font-weight:600;margin-bottom:10px;display:block}
+h1{font-size:clamp(34px,5vw,54px);font-weight:300;line-height:1.1;margin-bottom:22px}
+h1 b{font-weight:600;background:linear-gradient(90deg,var(--brown),var(--blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.desc{color:var(--muted);font-weight:300;max-width:450px;margin-bottom:30px}
+.cta-row{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.link-cta{text-decoration:none;font-size:14px;font-weight:500;border-bottom:2px solid var(--brown);padding-bottom:3px;transition:.25s}
+.link-cta:hover{color:var(--blue);border-color:var(--blue)}
+.hero-text>*{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+.hero-text>*:nth-child(2){animation-delay:.08s}.hero-text>*:nth-child(3){animation-delay:.16s}.hero-text>*:nth-child(4){animation-delay:.24s}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}}
 
-        /* GRILLA RESPONSIVA DE COLORES (2 columnas en celular, 4 en PC) */
-        .grid-colores {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-        @media (min-width: 768px) {
-            .grid-colores { grid-template-columns: repeat(4, 1fr); }
-        }
-        .card-color {
-            background: rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 16px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .card-color:hover { border-color: #4a90e2; transform: translateY(-2px); }
-        .muestras-img {
-            width: 100%;
-            aspect-ratio: 1;
-            margin-bottom: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
+/* VISUALIZADOR (mueble que cambia de color) */
+.stage{position:relative;aspect-ratio:4/3;border:1px solid var(--line);border-radius:6px;background:radial-gradient(120% 90% at 50% 0%,rgba(74,144,226,.16),transparent 60%),var(--panel);display:flex;align-items:flex-end;justify-content:center;padding:9% 12% 11%}
+.stage::after{content:"";position:absolute;left:8%;right:8%;bottom:8%;height:2px;background:var(--line)}
+.closet{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;width:100%;height:100%;padding:8px;background:#05070c;border-radius:3px;box-shadow:0 30px 60px -20px rgba(0,0,0,.8)}
+.door{background:var(--sel);position:relative;border-radius:2px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.25),inset 0 -40px 60px -30px rgba(0,0,0,.35)}
+.door::after{content:"";position:absolute;top:44%;width:3px;height:14%;background:rgba(255,255,255,.55);border-radius:2px}
+.door:nth-child(odd)::after{right:8px}.door:nth-child(even)::after{left:8px}
+.closet.flash .door{animation:swap .5s ease}
+@keyframes swap{from{filter:brightness(1.8);transform:scaleY(.985)}}
+.stage-label{position:absolute;left:16px;top:14px;font-size:13px;color:var(--muted)}
+.stage-label b{color:var(--text);font-weight:600}
 
-        /* GRILLA DE PLACAS */
-        .grid-placas {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 24px;
-        }
-        @media (min-width: 768px) {
-            .grid-placas { grid-template-columns: repeat(3, 1fr); }
-        }
-        .card-placa {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 32px;
-            text-align: left;
-        }
-        .card-placa span { color: #92623e; font-family: monospace; font-size: 14px; }
-        .card-placa h3 { color: #ffffff; margin: 12px 0; font-size: 18px; font-weight: 500; }
-        .card-placa p { color: #9ca3af; font-size: 14px; font-weight: 300; }
+/* SECCIONES */
+section{padding:84px 0;border-top:1px solid var(--line);scroll-margin-top:var(--nav-h)}
+.sec-title{margin-bottom:38px}
+.sec-title small{color:var(--blue);font-size:13px;font-weight:600}
+.sec-title h2{font-size:clamp(26px,3.4vw,34px);font-weight:300;margin-top:6px}
+.sec-title p{color:var(--muted);max-width:520px;margin-top:8px;font-weight:300}
 
-        /* FORMULARIO COTIZADOR REFINADO */
-        .max-w-3xl { max-width: 700px; margin: 0 auto; }
-        form { display: flex; flex-direction: column; gap: 24px; text-align: left; }
-        .form-group { display: flex; flex-direction: column; gap: 8px; }
-        .form-row { display: grid; grid-template-columns: 1fr; gap: 16px; }
-        @media (min-width: 768px) {
-            .form-row { grid-template-columns: 1fr 1fr; }
-            .form-triple { grid-template-columns: repeat(3, 1fr) !important; }
-        }
-        .form-triple { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-        
-        label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #9ca3af; font-weight: 600; }
-        input, select {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 14px;
-            color: #ffffff;
-            font-size: 14px;
-            width: 100%;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-        input:focus, select:focus { border-color: #4a90e2; }
-        .w-full-btn { width: 100%; padding: 16px; font-size: 13px; margin-top: 12px; }
+/* PALETA DE COLORES */
+.swatches{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+@media(min-width:768px){.swatches{grid-template-columns:repeat(4,1fr)}}
+.sw{all:unset;box-sizing:border-box;cursor:pointer;background:var(--panel);border:1px solid var(--line);padding:12px;border-radius:6px;position:relative;overflow:hidden;transition:border-color .25s,transform .25s}
+.sw:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.25)}
+.sw:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.sw[aria-pressed="true"]{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue),0 10px 30px -12px rgba(74,144,226,.5)}
+.sw .chip{aspect-ratio:1;border-radius:3px;border:1px solid rgba(255,255,255,.12);margin-bottom:10px;background:var(--c)}
+.sw strong{display:block;font-size:15px;font-weight:500}
+.sw em{font-style:normal;font-size:13px;color:var(--muted)}
+.sw .ok{position:absolute;top:20px;right:20px;width:26px;height:26px;border-radius:50%;background:var(--blue);display:grid;place-items:center;font-size:14px;transform:scale(0);transition:transform .25s cubic-bezier(.3,1.6,.5,1)}
+.sw[aria-pressed="true"] .ok{transform:scale(1)}
+.hint{margin-top:18px;font-size:13px;color:var(--muted)}
 
-        footer {
-            text-align: center;
-            padding: 40px 0;
-            font-size: 12px;
-            color: #4b5563;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-    </style>
+/* GALERÍA */
+.gallery{display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:768px){.gallery{grid-template-columns:repeat(3,1fr)}}
+.shot{margin:0;border-radius:6px;overflow:hidden;border:1px solid var(--line);background:var(--panel)}
+.shot img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .6s ease}
+.shot:hover img{transform:scale(1.05)}
+.shot figcaption{padding:14px 16px;font-size:14px;color:var(--muted)}
+
+/* PLACAS con luz que sigue al cursor */
+.placas{display:grid;gap:20px}
+@media(min-width:768px){.placas{grid-template-columns:repeat(3,1fr)}}
+.placa{position:relative;padding:30px;border:1px solid var(--line);border-radius:6px;background:var(--panel);overflow:hidden}
+.placa::before{content:"";position:absolute;inset:0;background:radial-gradient(260px circle at var(--x,50%) var(--y,0%),rgba(74,144,226,.18),transparent 70%);opacity:0;transition:opacity .3s;pointer-events:none}
+.placa:hover::before{opacity:1}
+.placa .mm{color:var(--brown);font-family:ui-monospace,Menlo,monospace;font-size:15px}
+.placa h3{font-size:19px;font-weight:500;margin:10px 0 8px}
+.placa p{color:var(--muted);font-size:14px;font-weight:300}
+
+/* COTIZADOR */
+.quote{display:grid;gap:36px}
+@media(min-width:900px){.quote{grid-template-columns:1.2fr .8fr;align-items:start}}
+form{display:flex;flex-direction:column;gap:20px}
+.row{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:600px){.row.two{grid-template-columns:1fr 1fr}.row.three{grid-template-columns:repeat(3,1fr)}}
+.f{display:flex;flex-direction:column;gap:7px}
+label{font-size:13px;color:var(--muted);font-weight:500}
+input,select{background:rgba(0,0,0,.4);border:1px solid var(--line);padding:13px 14px;color:#fff;font:inherit;font-size:15px;width:100%;border-radius:3px;transition:border-color .25s}
+input:focus,select:focus{border-color:var(--blue);outline:none}
+select option{background:#0b0f19}
+.summary{position:sticky;top:calc(var(--nav-h) + 20px);padding:26px;border:1px solid var(--line);border-radius:6px;background:var(--panel);backdrop-filter:blur(10px)}
+.summary h3{font-size:17px;font-weight:500;margin-bottom:16px}
+.summary dl{display:grid;grid-template-columns:auto 1fr;gap:10px 16px;font-size:14px}
+.summary dt{color:var(--muted)}.summary dd{text-align:right}
+.mini{height:46px;border-radius:3px;background:var(--sel);border:1px solid rgba(255,255,255,.15);margin-bottom:18px}
+.summary .btn{width:100%;margin-top:22px;text-align:center;padding:15px}
+.note{font-size:12px;color:var(--muted);margin-top:12px}
+
+/* WHATSAPP FLOTANTE */
+.wa{position:fixed;right:18px;bottom:18px;z-index:60;display:flex;align-items:center;gap:10px;background:#1faa59;color:#fff;text-decoration:none;font-weight:600;font-size:14px;padding:13px 18px;border-radius:40px;box-shadow:0 8px 26px rgba(0,0,0,.45);transition:transform .2s}
+.wa:hover{transform:translateY(-2px)}
+.wa svg{width:20px;height:20px;fill:#fff}
+
+footer{text-align:center;padding:40px 24px 10px;font-size:13px;color:#7b8494;border-top:1px solid var(--line)}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
 </head>
 <body>
 
-    <!-- Navegación -->
-    <nav>
-        <div class="max-w-6xl nav-container">
-            <a href="#" class="logo"><span>MO</span>MAF</a>
-            <div class="nav-links">
-                <a href="#colores">Colores</a>
-                <a href="#placas">Placas</a>
-                <a href="#cotizador">Cotizador</a>
-            </div>
-            <a href="#cotizador" class="btn-premium">Cotizar Ahora</a>
-        </div>
-    </nav>
+<nav>
+  <div class="wrap nav-in">
+    <a href="#" class="logo"><span>MO</span>MAF</a>
+    <div class="links">
+      <a href="#colores">Colores</a>
+      <a href="#trabajos">Trabajos</a>
+      <a href="#placas">Placas</a>
+      <a href="#cotizador">Cotizador</a>
+    </div>
+    <a href="#cotizador" class="btn"><span>Cotizar ahora</span></a>
+  </div>
+</nav>
 
-    <!-- Sección Principal (Héroe) -->
-    <header class="max-w-6xl">
-        <div>
-            <span class="tagline">Mobiliario Exclusivo en Melamina</span>
-            <h1>Diseño minimalista.<br><span>Precisión artesanal.</span></h1>
-            <p class="desc">En MOMAF fusionamos la nobleza de las texturas maderadas con la elegancia del negro profundo y destellos azules sutiles. Proyectá tu mueble ideal hoy mismo.</p>
-            <a href="#cotizador" class="link-cta">Iniciar cotización →</a>
-        </div>
-        <div class="box-transparente hero-img-placeholder">
-            <span style="color: #92623e; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; margin-bottom: 8px;">[ Espacio para Foto de Cocina / Vestidor ]</span>
-            <p style="font-size: 12px; color: #6b7280; max-w: 280px; font-weight: 300;">Reemplazá este recuadro por la foto real de tu mejor proyecto terminado.</p>
-        </div>
-    </header>
+<main>
+<!-- HERO con visualizador -->
+<div class="wrap hero">
+  <div class="hero-text">
+    <span class="tag">Muebles a medida en melamina</span>
+    <h1>Diseño minimalista.<br><b>Precisión artesanal.</b></h1>
+    <p class="desc">Combinamos la calidez de la madera con el negro profundo y detalles azules. Probá colores sobre un placard y pedí tu presupuesto en minutos.</p>
+    <div class="cta-row">
+      <a href="#colores" class="btn"><span>Probar colores</span></a>
+      <a href="#cotizador" class="link-cta">Ir al cotizador</a>
+    </div>
+  </div>
+  <div class="stage" aria-label="Simulador de placard">
+    <div class="stage-label">Color: <b id="stageName">Roble natural</b></div>
+    <div class="closet" id="closet"><div class="door"></div><div class="door"></div><div class="door"></div></div>
+  </div>
+</div>
 
-    <!-- Muestrario de Colores Interactivo -->
-    <section id="colores">
-        <div class="max-w-6xl">
-            <div class="section-title">
-                <span>01 / Materiales de Vanguardia</span>
+<!-- COLORES -->
+<section id="colores">
+  <div class="wrap">
+    <div class="sec-title">
+      <small>Colores y texturas</small>
+      <h2>Elegí tu melamina</h2>
+      <p>Tocá un color: el placard se actualiza y queda guardado en tu cotización.</p>
+    </div>
+    <div class="swatches" id="swatches"></div>
+    <p class="hint">Los tonos son orientativos; pedí la muestra física antes de decidir.</p>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section id="trabajos">
+  <div class="wrap">
+    <div class="sec-title">
+      <small>Trabajos</small>
+      <h2>Proyectos terminados</h2>
+      <p>Cambiá el atributo src de cada imagen por tu foto real (ej: fotos/cocina.jpg).</p>
+    </div>
+    <div class="gallery">
+      <figure class="shot"><img data-ph="Cocina" alt="Cocina en melamina (foto de muestra)"><figcaption>Cocina con barra</figcaption></figure>
+      <figure class="shot"><img data-ph="Vestidor" alt="Vestidor en melamina (foto de muestra)"><figcaption>Vestidor en L</figcaption></figure>
+      <figure class="shot"><img data-ph="Placard" alt="Placard en melamina (foto de muestra)"><figcaption>Placard con puertas corredizas</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- PLACAS -->
+<section id="placas">
+  <div class="wrap">
+    <div class="sec-title">
+      <small>Materiales</small>
+      <h2>Placas que usamos</h2>
+    </div>
+    <div class="placas">
+      <article class="placa"><span class="mm">18 mm</span><h3>Estructura y estantes</h3><p>Espesor estándar para laterales, bases y estantes con buena resistencia al peso.</p></article>
+      <article class="placa"><span class="mm">15 mm</span><h3>Interiores y cajones</h3><p>Ideal para divisiones y laterales de cajón, con menor peso y mejor aprovechamiento.</p></article>
+      <article class="placa"><span class="mm">3 a 5,5 mm</span><h3>Fondos</h3><p>Cierre trasero del mueble que mantiene la escuadra y protege el interior.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- COTIZADOR -->
+<section id="cotizador">
+  <div class="wrap">
+    <div class="sec-title">
+      <small>Cotizador</small>
+      <h2>Pedí tu presupuesto</h2>
+      <p>Completá los datos y se arma un mensaje listo para enviarnos por WhatsApp.</p>
+    </div>
+    <div class="quote">
+      <form id="form" novalidate>
+        <div class="row two">
+          <div class="f"><label for="nombre">Tu nombre</label><input id="nombre" autocomplete="name" placeholder="Ej: Laura"></div>
+          <div class="f"><label for="zona">Localidad</label><input id="zona" autocomplete="address-level2" placeholder="Ej: Guernica"></div>
+        </div>
+        <div class="row two">
+          <div class="f"><label for="tipo">¿Qué mueble necesitás?</label>
+            <select id="tipo"><option>Cocina</option><option selected>Placard</option><option>Vestidor</option><option>Mueble de baño</option><option>Escritorio / Biblioteca</option><option>Otro</option></select></div>
+          <div class="f"><label for="color">Color de melamina</label><select id="color"></select></div>
+        </div>
+        <div class="row three">
+          <div class="f"><label for="ancho">Ancho (cm)</label><input id="ancho" type="number" inputmode="numeric" min="0" placeholder="240"></div>
+          <div class="f"><label for="alto">Alto (cm)</label><input id="alto" type="number" inputmode="numeric" min="0" placeholder="260"></div>
+          <div class="f"><label for="prof">Profundidad (cm)</label><input id="prof" type="number" inputmode="numeric" min="0" placeholder="55"></div>
+        </div>
+      </form>
+
+      <aside class="summary" aria-live="polite">
+        <h3>Resumen de tu pedido</h3>
+        <div class="mini"></div>
+        <dl>
+          <dt>Mueble</dt><dd id="sTipo">-</dd>
+          <dt>Color</dt><dd id="sColor">-</dd>
+          <dt>Medidas</dt><dd id="sMed">Sin completar</dd>
+        </dl>
+        <a href="#" class="btn" id="send"><span>Enviar por WhatsApp</span></a>
+        <p class="note">Te respondemos con precio y tiempos. Sin compromiso.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>© <span id="y"></span> MOMAF · Carpintería de melamina a medida</footer>
+
+<a class="wa" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6-.3.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg>
+  WhatsApp
+</a>
+
+<script>
+/* ====== CONFIGURACIÓN: editá estos datos ====== */
+const WHATSAPP = "5491100000000";   // tu número con código de país, sin + ni espacios
+/* Colores: "c" es el fondo (CSS). Para usar una foto real de la placa:
+   c: "url('fotos/roble.jpg') center/cover"                             */
+const COLORES = [
+  {n:"Blanco",        t:"Liso mate",     c:"linear-gradient(135deg,#f4f4f2,#dcdcd8)"},
+  {n:"Negro",         t:"Liso mate",     c:"linear-gradient(135deg,#1b1d22,#0c0d10)"},
+  {n:"Grafito",       t:"Liso texturado",c:"linear-gradient(135deg,#4a4e55,#2f3238)"},
+  {n:"Gris cemento",  t:"Efecto piedra", c:"repeating-linear-gradient(100deg,rgba(255,255,255,.05) 0 2px,transparent 2px 7px),linear-gradient(135deg,#8d9096,#6c6f75)"},
+  {n:"Roble natural", t:"Veta de madera",c:"repeating-linear-gradient(92deg,rgba(90,55,25,.18) 0 1px,transparent 1px 6px),linear-gradient(135deg,#d3ac7b,#b78b57)"},
+  {n:"Nogal",         t:"Veta de madera",c:"repeating-linear-gradient(92deg,rgba(30,15,5,.28) 0 1px,transparent 1px 5px),linear-gradient(135deg,#7a5232,#5a3a22)"},
+  {n:"Wengué",        t:"Veta oscura",   c:"repeating-linear-gradient(90deg,rgba(0,0,0,.35) 0 1px,transparent 1px 4px),linear-gradient(135deg,#3c2a22,#241914)"},
+  {n:"Azul petróleo", t:"Liso mate",     c:"linear-gradient(135deg,#2c5a78,#1c3d55)"}
+];
+/* ============================================== */
+
+const $ = id => document.getElementById(id);
+let actual = 4;
+
+/* Imágenes de muestra: reemplazá el src por tu foto real */
+function placeholder(txt){
+  const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='800' height='600'>
+  <defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#1a2335'/><stop offset='1' stop-color='#0b0f19'/></linearGradient></defs>
+  <rect width='800' height='600' fill='url(#g)'/>
+  <rect x='160' y='150' width='480' height='300' rx='6' fill='none' stroke='#b07a4f' stroke-width='2' stroke-dasharray='10 8'/>
+  <text x='400' y='305' font-family='sans-serif' font-size='34' fill='#f3f4f6' text-anchor='middle'>${txt}</text>
+  <text x='400' y='345' font-family='sans-serif' font-size='18' fill='#a3abb8' text-anchor='middle'>Foto de muestra</text></svg>`;
+  return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
+}
+document.querySelectorAll("img[data-ph]").forEach(i => i.src = placeholder(i.dataset.ph));
+
+/* Paleta */
+const cont = $("swatches"), sel = $("color");
+COLORES.forEach((col,i) => {
+  const b = document.createElement("button");
+  b.type = "button"; b.className = "sw";
+  b.style.setProperty("--c", col.c);
+  b.innerHTML = `<div class="chip"></div><strong>${col.n}</strong><em>${col.t}</em><span class="ok">✓</span>`;
+  b.addEventListener("click", () => elegir(i));
+  cont.appendChild(b);
+  sel.add(new Option(col.n, i));
+});
+
+function elegir(i){
+  actual = i;
+  const col = COLORES[i];
+  document.documentElement.style.setProperty("--sel", col.c);
+  [...cont.children].forEach((b,k) => b.setAttribute("aria-pressed", k === i));
+  sel.value = i;
+  $("stageName").textContent = col.n;
+  const c = $("closet"); c.classList.remove("flash"); void c.offsetWidth; c.classList.add("flash");
+  resumen();
+}
+
+/* Resumen y WhatsApp */
+function mensaje(){
+  const v = id => $(id).value.trim();
+  const med = [v("ancho"),v("alto"),v("prof")];
+  const medTxt = med.some(Boolean) ? `${med[0]||"?"} x ${med[1]||"?"} x ${med[2]||"?"} cm (ancho x alto x prof.)` : "a definir";
+  return `Hola MOMAF! Quiero cotizar un mueble.\n` +
+    `Nombre: ${v("nombre")||"-"}\nLocalidad: ${v("zona")||"-"}\n` +
+    `Mueble: ${$("tipo").value}\nColor: ${COLORES[actual].n}\nMedidas: ${medTxt}`;
+}
+function resumen(){
+  const a = $("ancho").value, h = $("alto").value, p = $("prof").value;
+  $("sTipo").textContent = $("tipo").value;
+  $("sColor").textContent = COLORES[actual].n;
+  $("sMed").textContent = (a||h||p) ? `${a||"?"} x ${h||"?"} x ${p||"?"} cm` : "Sin completar";
+  const url = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(mensaje())}`;
+  $("send").href = url; $("send").target = "_blank"; $("send").rel = "noopener";
+  $("waFloat").href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Hola MOMAF! Quiero hacer una consulta.")}`;
+}
+sel.addEventListener("change", e => elegir(+e.target.value));
+["tipo","nombre","zona","ancho","alto","prof"].forEach(id => $(id).addEventListener("input", resumen));
+
+/* Luz que sigue al cursor en las placas */
+document.querySelectorAll(".placa").forEach(el => el.addEventListener("pointermove", e => {
+  const r = el.getBoundingClientRect();
+  el.style.setProperty("--x", e.clientX - r.left + "px");
+  el.style.setProperty("--y", e.clientY - r.top + "px");
+}));
+
+$("y").textContent = new Date().getFullYear();
+elegir(actual);
+</script>
+</body>
+</html>
