@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -20,8 +21,8 @@
 :root{
   --bg:#0b0f19; --panel:rgba(255,255,255,.04); --line:rgba(255,255,255,.09);
   --text:#f3f4f6; --muted:#a3abb8; --brown:#b07a4f; --brown-d:#825330; --blue:#4a90e2;
-  --body-color:linear-gradient(135deg,#d3ac7b,#b78b57);   /* color cuerpo */
-  --front-color:linear-gradient(135deg,#1b1d22,#0c0d10);  /* color frentes */
+  --body-color:linear-gradient(135deg,#d3ac7b,#b78b57);
+  --front-color:linear-gradient(135deg,#1b1d22,#0c0d10);
   --nav-h:76px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -345,14 +346,14 @@ footer{text-align:center;padding:40px 24px 10px;font-size:13px;color:#7b8494;bor
 /* =====================================================================
    CONFIGURACIÓN — editá estos datos
    ===================================================================== */
-const WHATSAPP = "5491150355005"; // 54 9 11 5035-5005
+const WHATSAPP = "5491150355005";
 const REDES = {
   instagram: "",
   facebook:  "",
   tiktok:    ""
 };
 
-/* Paleta de melaminas. Para usar foto real: c:"url('fotos/roble.jpg') center/cover" */
+/* Paleta de melaminas. Para foto real: c:"url('fotos/roble.jpg') center/cover" */
 const COLORES = [
   {n:"Blanco",        t:"Liso mate",      c:"linear-gradient(135deg,#f4f4f2,#dcdcd8)"},
   {n:"Negro",         t:"Liso mate",      c:"linear-gradient(135deg,#1b1d22,#0c0d10)"},
@@ -364,19 +365,19 @@ const COLORES = [
   {n:"Azul petróleo", t:"Liso mate",      c:"linear-gradient(135deg,#2c5a78,#1c3d55)"}
 ];
 
-/* Precio referencia por m² de frente (ancho x alto). EDITAR. */
+/* Precio por m² de frente (ancho x alto). EDITAR. */
 const PRECIO_M2 = {
   "Placard": 300000, "Vestidor": 330000, "Bajo mesada": 320000,
   "Alacena": 310000, "Biblioteca": 280000, "Estante": 220000, "Escritorio": 250000
 };
-const MARGEN = 0.12;          // ±12%
-const EXTRA_CAJONES = 45000;  // por cajón estimado (orientativo)
-const EXTRA_HERRAJES = 0.08;  // +8% si elige premium
+const MARGEN = 0.12;
+const EXTRA_CAJONES = 45000;
+const EXTRA_HERRAJES = 0.08;
 
 /* =====================================================================
-   TIPOS DE MUEBLES — definición SVG (viewBox 400x300)
-   Cada figura usa clases .furniture-body y .furniture-front que se pintan
-   con las variables CSS --body-color y --front-color.
+   TIPOS DE MUEBLES — SVG (viewBox 400x300)
+   Las figuras usan .furniture-body y .furniture-front que heredan
+   las variables --body-color y --front-color.
    ===================================================================== */
 const FURNITURES = {
   Placard: {
@@ -477,11 +478,11 @@ const FURNITURES = {
 /* =====================================================================
    ESTADO
    ===================================================================== */
-const LS_KEY = "momaf_config_v2";
+const LS_KEY = "momaf_config_v3";  // FIX: nueva clave para evitar estados viejos corruptos
 const state = {
   furniture: "Placard",
-  body: 4,    // índice en COLORES — Roble natural por defecto
-  front: 1,   // Negro por defecto
+  body: 4,    // Roble natural
+  front: 1,   // Negro
   zone: "body"
 };
 
@@ -499,7 +500,7 @@ const cargar = () => {
     if(!raw) return;
     const s = JSON.parse(raw);
     if(FURNITURES[s.furniture]) state.furniture = s.furniture;
-    if(Number.isInteger(s.body)  && COLORES[s.body])  state.body = s.body;
+    if(Number.isInteger(s.body)  && COLORES[s.body])  state.body  = s.body;
     if(Number.isInteger(s.front) && COLORES[s.front]) state.front = s.front;
   } catch(e){}
 };
@@ -519,32 +520,35 @@ function placeholder(txt){
   return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
 }
 document.querySelectorAll("img[data-ph]").forEach(i => {
-  // Si el usuario ya cargó una imagen real, respetarla
-  if(i.getAttribute("src") && !i.getAttribute("src").startsWith("data:")) return;
+  const src = i.getAttribute("src");
+  if(src && !src.startsWith("data:")) return; // respeta fotos reales ya cargadas
   i.src = placeholder(i.dataset.ph);
 });
 
 /* =====================================================================
-   RENDER: tabs de muebles, swatches y simulador
+   REFERENCIAS DOM
    ===================================================================== */
-const tabsEl = $("tabs");
-const swEl = $("swatches");
-const selEl = $("tipo");
+const tabsEl  = $("tabs");
+const swEl    = $("swatches");
+const selEl   = $("tipo");
+const stageEl = $("stageSvg");
 
-// Tabs
+/* =====================================================================
+   RENDER: tabs, select y swatches
+   ===================================================================== */
 Object.keys(FURNITURES).forEach(key => {
+  // Tab del simulador
   const b = document.createElement("button");
   b.type = "button"; b.className = "tab"; b.role = "tab";
   b.textContent = FURNITURES[key].label;
   b.dataset.key = key;
   b.addEventListener("click", () => setFurniture(key));
   tabsEl.appendChild(b);
+
+  // Opción del select del cotizador
+  selEl.add(new Option(FURNITURES[key].label, key));
 });
 
-// Selector del cotizador
-Object.keys(FURNITURES).forEach(key => selEl.add(new Option(FURNITURES[key].label, key)));
-
-// Swatches
 COLORES.forEach((col, i) => {
   const b = document.createElement("button");
   b.type = "button"; b.className = "sw";
@@ -555,18 +559,28 @@ COLORES.forEach((col, i) => {
   swEl.appendChild(b);
 });
 
+/* =====================================================================
+   LÓGICA DEL SIMULADOR
+   ===================================================================== */
+
+// FIX CLAVE: al inyectar el SVG, siempre re-aplicar colores DESPUÉS
+// de que el SVG está en el DOM, para que los fill:var(...) se resuelvan.
 function setFurniture(key){
   if(!FURNITURES[key]) return;
   state.furniture = key;
-  const host = $("stageSvg");
+
   const svg = `<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">${FURNITURES[key].svg}</svg>`;
-  host.classList.add("swap");
+
+  stageEl.classList.add("swap");
   setTimeout(() => {
-    host.innerHTML = svg;
-    host.classList.remove("swap");
+    stageEl.innerHTML = svg;
+    aplicarColores();        // ← FIX: re-aplicar colores tras inyectar SVG
+    stageEl.classList.remove("swap");
   }, 150);
 
-  [...tabsEl.children].forEach(t => t.setAttribute("aria-selected", t.dataset.key === key));
+  [...tabsEl.children].forEach(t =>
+    t.setAttribute("aria-selected", t.dataset.key === key)
+  );
   $("stageName").textContent = FURNITURES[key].label;
   selEl.value = key;
   actualizarResumen();
@@ -576,7 +590,7 @@ function setFurniture(key){
 function setColor(idx){
   if(!COLORES[idx]) return;
   if(state.zone === "body") state.body = idx;
-  else state.front = idx;
+  else                      state.front = idx;
   aplicarColores();
   actualizarResumen();
   guardar();
@@ -593,17 +607,38 @@ function setZone(zone){
 
 function pintarSwatchesActivos(){
   const idx = state.zone === "body" ? state.body : state.front;
-  [...swEl.children].forEach((b, i) => b.setAttribute("aria-pressed", i === idx));
+  [...swEl.children].forEach((b, i) =>
+    b.setAttribute("aria-pressed", i === idx)
+  );
 }
 
+// FIX CLAVE: esta función ahora aplica las variables directamente en el
+// SVG inyectado, garantizando que se pinten bien los fills aunque el
+// navegador tenga problemas con variables CSS en SVG dinámicos.
 function aplicarColores(){
   const body  = COLORES[state.body].c;
   const front = COLORES[state.front].c;
+
+  // 1) Variables globales (para el mini preview del resumen)
   document.documentElement.style.setProperty("--body-color",  body);
   document.documentElement.style.setProperty("--front-color", front);
+
+  // 2) FIX: aplicar fill directamente a los elementos SVG inyectados.
+  //    Esto evita problemas de herencia de variables CSS en SVG dinámico.
+  stageEl.querySelectorAll(".furniture-body").forEach(el =>
+    el.style.fill = body
+  );
+  stageEl.querySelectorAll(".furniture-front").forEach(el =>
+    el.style.fill = front
+  );
+
+  // 3) Dots del selector de zona
   $("zoneDotBody").style.background  = body;
   $("zoneDotFront").style.background = front;
+
+  // 4) Texto combo en el hero
   $("stageCombo").textContent = `${COLORES[state.body].n} + ${COLORES[state.front].n}`;
+
   pintarSwatchesActivos();
 }
 
@@ -618,11 +653,9 @@ function medidas(){
   };
 }
 function extras(){
-  const c = $("cajones").checked;
-  const h = $("herrajes").checked;
   const arr = [];
-  if(c) arr.push("con cajones");
-  if(h) arr.push("herrajes premium");
+  if($("cajones").checked)  arr.push("con cajones");
+  if($("herrajes").checked) arr.push("herrajes premium");
   return arr;
 }
 function estimado(){
@@ -630,12 +663,11 @@ function estimado(){
   const base = PRECIO_M2[state.furniture];
   if(!a || !h || !base) return null;
   let total = (a*h/10000) * base;
-  if($("cajones").checked)  total += EXTRA_CAJONES * 2; // estimado 2 cajones
+  if($("cajones").checked)  total += EXTRA_CAJONES * 2;
   if($("herrajes").checked) total *= (1 + EXTRA_HERRAJES);
   return `${peso(total*(1-MARGEN))} a ${peso(total*(1+MARGEN))}`;
 }
 
-/* Validación básica: nombre, localidad, ancho, alto */
 function validar(){
   const requeridos = ["nombre","zona","ancho","alto"];
   let ok = true;
@@ -653,11 +685,12 @@ function actualizarResumen(){
   $("sTipo").textContent  = FURNITURES[state.furniture].label;
   $("sBody").textContent  = COLORES[state.body].n;
   $("sFront").textContent = COLORES[state.front].n;
-  $("sMed").textContent   = (a||h||p) ? `${a||"?"} x ${h||"?"} x ${p||"?"} cm` : "Sin completar";
+  $("sMed").textContent   = (a||h||p)
+    ? `${a||"?"} x ${h||"?"} x ${p||"?"} cm`
+    : "Sin completar";
   const ex = extras();
   $("sExtras").textContent = ex.length ? ex.join(" + ") : "—";
-  const est = estimado();
-  $("sEst").textContent = est || "Cargá ancho y alto";
+  $("sEst").textContent = estimado() || "Cargá ancho y alto";
 
   const ok = validar();
   const send = $("send");
@@ -688,8 +721,7 @@ function waUrl(texto){
 function mensaje(){
   const v = id => $(id).value.trim();
   const {a, h, p} = medidas();
-  const med = [a, h, p];
-  const medTxt = med.some(Boolean)
+  const medTxt = (a||h||p)
     ? `${a||"?"} x ${h||"?"} x ${p||"?"} cm (ancho x alto x prof.)`
     : "a definir";
   const ex = extras();
@@ -711,7 +743,7 @@ function mensaje(){
    ===================================================================== */
 ["nombre","zona","contacto","ancho","alto","prof","cajones","herrajes"].forEach(id => {
   const el = $(id);
-  el.addEventListener("input", actualizarResumen);
+  el.addEventListener("input",  actualizarResumen);
   el.addEventListener("change", actualizarResumen);
 });
 selEl.addEventListener("change", e => setFurniture(e.target.value));
@@ -720,11 +752,13 @@ document.querySelectorAll(".zone").forEach(z =>
 );
 
 /* Luz que sigue al cursor en las placas */
-document.querySelectorAll(".placa").forEach(el => el.addEventListener("pointermove", e => {
-  const r = el.getBoundingClientRect();
-  el.style.setProperty("--x", (e.clientX - r.left) + "px");
-  el.style.setProperty("--y", (e.clientY - r.top) + "px");
-}));
+document.querySelectorAll(".placa").forEach(el =>
+  el.addEventListener("pointermove", e => {
+    const r = el.getBoundingClientRect();
+    el.style.setProperty("--x", (e.clientX - r.left) + "px");
+    el.style.setProperty("--y", (e.clientY - r.top)  + "px");
+  })
+);
 
 /* Iconos de redes */
 const ICONOS = {
@@ -742,7 +776,8 @@ Object.keys(ICONOS).forEach(k => {
   if(redes[k]){
     a.href = redes[k]; a.target = "_blank"; a.rel = "noopener"; a.title = NOMBRES[k];
   } else {
-    a.className = "off"; a.title = NOMBRES[k] + " (enlace pendiente)";
+    a.className = "off";
+    a.title = NOMBRES[k] + " (enlace pendiente)";
     a.setAttribute("aria-disabled","true");
     a.addEventListener("click", e => e.preventDefault());
   }
@@ -754,8 +789,8 @@ Object.keys(ICONOS).forEach(k => {
    ===================================================================== */
 cargar();
 setZone("body");
-aplicarColores();
-setFurniture(state.furniture);
+setFurniture(state.furniture);   // inyecta SVG (con aplicarColores interno)
+aplicarColores();                // por las dudas, refuerza al toque
 actualizarResumen();
 $("y").textContent = new Date().getFullYear();
 </script>
