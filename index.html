@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOMAF | Carpintería de Melamina Premium</title>
+    <!-- Tailwind CSS v4 para Estilos Estables y Ultra-rápidos -->
+    <script src="https://jsdelivr.net"></script>
+    <style>
+        @import url('https://googleapis.com');
+        body { font-family: 'Inter', sans-serif; background-color: #fcfcfc; color: #1a1a1a; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navegación -->
+    <nav class="border-b border-gray-100 bg-white sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="text-xl font-medium tracking-widest uppercase text-black">MOMAF .</a>
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-500">
+                <a href="#colores" class="hover:text-black transition">Colores</a>
+                <a href="#placas" class="hover:text-black transition">Placas</a>
+                <a href="#cotizador" class="hover:text-black transition">Cotizador</a>
+            </div>
+            <a href="#cotizador" class="bg-black text-white text-xs uppercase tracking-wider px-5 py-3 rounded-none hover:bg-gray-800 transition">Cotizar Ahora</a>
+        </div>
+    </nav>
+
+    <!-- Sección Principal (Héroe) -->
+    <header class="max-w-6xl mx-auto px-6 py-20 md:py-32 grid md:grid-cols-2 gap-12 items-center">
+        <div>
+            <span class="text-xs font-semibold uppercase tracking-widest text-gray-400">Carpintería de Melamina</span>
+            <h1 class="text-4xl md:text-5xl font-light tracking-tight leading-tight mb-6 mt-2">
+                Muebles a medida.<br><span class="font-medium">Simplicidad funcional.</span>
+            </h1>
+            <p class="text-gray-500 font-light mb-8 max-w-md leading-relaxed">
+                En MOMAF diseñamos y fabricamos mobiliario a medida de alta calidad. Seleccioná tus acabados, ingresá las dimensiones estimadas y recibí tu presupuesto directo en tu WhatsApp.
+            </p>
+            <a href="#cotizador" class="border-b-2 border-black pb-2 text-sm font-medium tracking-wider uppercase hover:text-gray-500 hover:border-gray-300 transition">Iniciar cotización →</a>
+        </div>
+        <div class="bg-gray-100 aspect-[4/3] w-full flex items-center justify-center border border-gray-200">
+            <span class="text-xs uppercase tracking-widest font-medium text-gray-400">[ Foto Principal MOMAF ]</span>
+        </div>
+    </header>
+
+    <!-- Muestrario de Colores -->
+    <section id="colores" class="max-w-6xl mx-auto px-6 py-20 border-t border-gray-100">
+        <div class="mb-12">
+            <span class="text-xs font-semibold uppercase tracking-widest text-gray-400">01 / Catálogo</span>
+            <h2 class="text-2xl font-light mt-2">Muestras de Color Disponibles</h2>
+            <p class="text-gray-400 text-sm font-light mt-1">Hacé clic en cualquier muestra para seleccionarla automáticamente en tu cotización.</p>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <!-- Color 1 -->
+            <div class="group cursor-pointer" onclick="seleccionarColor('Blanco Premium', 'Faplac (Mate)')">
+                <div class="bg-white border border-gray-200 aspect-square w-full mb-3 shadow-xs group-hover:border-black transition duration-300"></div>
+                <h3 class="text-sm font-medium">Blanco Premium</h3>
+                <p class="text-xs text-gray-400 font-light">Faplac — Mate</p>
+            </div>
+            <!-- Color 2 -->
+            <div class="group cursor-pointer" onclick="seleccionarColor('Roble Americano', 'Egger (Texturado)')">
+                <div class="bg-[#d2b48c] aspect-square w-full mb-3 shadow-xs group-hover:opacity-90 transition duration-300"></div>
+                <h3 class="text-sm font-medium">Roble Americano</h3>
+                <p class="text-xs text-gray-400 font-light">Egger — Texturado</p>
+            </div>
+            <!-- Color 3 -->
+            <div class="group cursor-pointer" onclick="seleccionarColor('Gris Grafito', 'Faplac (Satinado)')">
+                <div class="bg-[#3e424b] aspect-square w-full mb-3 shadow-xs group-hover:opacity-90 transition duration-300"></div>
+                <h3 class="text-sm font-medium">Gris Grafito</h3>
+                <p class="text-xs text-gray-400 font-light">Faplac — Satinado</p>
+            </div>
+            <!-- Color 4 -->
+            <div class="group cursor-pointer" onclick="seleccionarColor('Negro Profundo', 'Egger (PerfectSense)')">
+                <div class="bg-[#111111] aspect-square w-full mb-3 shadow-xs group-hover:opacity-90 transition duration-300"></div>
+                <h3 class="text-sm font-medium">Negro Profundo</h3>
+                <p class="text-xs text-gray-400 font-light">Egger — PerfectSense</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tipos de Placa -->
+    <section id="placas" class="bg-zinc-50 border-y border-gray-100 py-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="mb-12">
+                <span class="text-xs font-semibold uppercase tracking-widest text-gray-400">02 / Componentes</span>
+                <h2 class="text-2xl font-light mt-2">Estructura y Tipos de Placa</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 border border-gray-100">
+                    <span class="text-xs font-mono text-gray-400">18 mm</span>
+                    <h3 class="text-lg font-medium mt-2 mb-3">Placa Estándar MDF/MDP</h3>
+                    <p class="text-gray-500 text-sm font-light leading-relaxed">El espesor ideal para frentes de cocinas, placares de diseño y estructuras que garantizan rigidez a largo plazo.</p>
+                </div>
+                <div class="bg-white p-8 border border-gray-100">
+                    <span class="text-xs font-mono text-gray-400">18 mm (RH)</span>
+                    <h3 class="text-lg font-medium mt-2 mb-3">Resistente a la Humedad</h3>
+                    <p class="text-gray-500 text-sm font-light leading-relaxed">Placas con protección hidrófuga integrada. Ideales para vanitorys, bajomesadas y ambientes expuestos a vapores.</p>
+                </div>
+                <div class="bg-white p-8 border border-gray-100">
+                    <span class="text-xs font-mono text-gray-400">5 mm / 9 mm</span>
+                    <h3 class="text-lg font-medium mt-2 mb-3">Fondos de Mueble</h3>
+                    <p class="text-gray-500 text-sm font-light leading-relaxed">Optimizamos recursos aplicando placas delgadas con acabados combinados para fondos de cajones y traseras estructurales.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cotizador Inteligente -->
+    <section id="cotizador" class="max-w-3xl mx-auto px-6 py-20">
+        <div class="text-center mb-12">
+            <span class="text-xs font-semibold uppercase tracking-widest text-gray-400">03 / Cotizador</span>
+            <h2 class="text-3xl font-light mt-2">Envíanos tus Medidas</h2>
+            <p class="text-gray-400 text-sm font-light mt-2">Completá los campos mínimos para que el equipo de MOMAF calcule tu presupuesto preliminar.</p>
+        </div>
+
+        <form id="formCotizador" onsubmit="enviarCotizacion(event)" class="space-y-6 bg-white p-8 border border-gray-100 shadow-xs">
+            <!-- Tipo de Mueble -->
+            <div>
+                <label class="block text-xs uppercase tracking-wider font-medium text-gray-600 mb-2">1. Tipo de Mueble</label>
+                <select id="mueble" required class="w-full bg-gray-50 border border-gray-200 px-4 py-3 rounded-none focus:outline-none focus:border-black text-sm">
+                    <option value="">Seleccionar estructura...</option>
+                    <option value="Mueble de Cocina (Bajo/Alacena)">Mueble de Cocina</option>
+                    <option value="Placard / Vestidor">Placard / Vestidor</option>
+                    <option value="Rack de TV / Panel">Rack de TV o Panel</option>
+                    <option value="Escritorio / Oficina">Escritorio u Oficina</option>
+                    <option value="Mueble a medida personalizado">Otro diseño personalizado</option>
+                </select>
+            </div>
+
+            <!-- Materiales -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-xs uppercase tracking-wider font-medium text-gray-600 mb-2">2. Color Seleccionado</label>
+                    <input type="text" id="color" required placeholder="Escribí o hacé clic arriba" class="w-full bg-gray-50 border border-gray-200 px-4 py-3 rounded-none focus:outline-none focus:border-black text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs uppercase tracking-wider font-medium text-gray-600 mb-2">3. Espesor y Base</label>
+                    <select id="placa" required class="w-full bg-gray-50 border border-gray-200 px-4 py-3 rounded-none focus:outline-none focus:border-black text-sm">
+                        <option value="18mm Estándar">18mm Estándar</option>
+                        <option value="18mm Hidrófugo (RH)">18mm Hidrófugo (Zonas Húmedas)</option>
+                        <option value="Combinado (Cuerpo 18mm / Fondo 9mm)">Cuerpo 18mm / Fondo 9mm</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Medidas -->
+            <div>
+                <label class="block text-xs uppercase tracking-wider font-medium text-gray-600 mb-2">4. Medidas Estimadas (en centímetros)</label>
+                <div class="grid grid-cols-3 gap-4">
