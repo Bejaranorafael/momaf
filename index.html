@@ -4,142 +4,292 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MOMAF | Carpintería de Melamina Premium</title>
-    <!-- Tailwind CSS v4 - URL Corregida y Funcional -->
-    <script src="https://jsdelivr.net"></script>
     <style>
-        /* Google Fonts - URL Corregida y Funcional */
-        @import url('https://googleapis.com');
-        
+        /* ESTILOS CORE & PALETA INDUSTRIAL (NEGRO, AZUL, MARRÓN) */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
         body { 
-            font-family: 'Inter', sans-serif; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: #0b0f19; 
             color: #f3f4f6;
-            /* Fondo asociado a madera/taller con opacidad oscura */
-            background-image: 
-                linear-gradient(to bottom, rgba(11, 15, 25, 0.9), rgba(11, 15, 25, 0.95)),
-                url('https://unsplash.com');
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: center;
+            line-height: 1.6;
+            padding-bottom: 60px;
         }
-        .backdrop-blur-md {
+        
+        /* CONTENEDOR GLOBAL */
+        .max-w-6xl {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* NAVEGACIÓN CON TRANSPARENCIA (GLASSMORPHISM) */
+        nav {
+            border-b: 1px solid rgba(255, 255, 255, 0.08);
+            background-color: rgba(11, 15, 25, 0.8);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            height: 80px;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+        }
+        .logo {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        .logo span { color: #92623e; }
+        .nav-links { display: none; }
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+                gap: 32px;
+            }
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #9ca3af;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: #4a90e2; }
+        
+        /* BOTONES PREMIUM */
+        .btn-premium {
+            background: linear-gradient(135deg, #825330, #92623e);
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 12px 20px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-premium:hover {
+            background: linear-gradient(135deg, #4a90e2, #357abd);
+            box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+        }
+
+        /* HÉROE / PRESENTACIÓN */
+        header {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            padding: 60px 0;
+        }
+        @media (min-width: 768px) {
+            header {
+                display: grid;
+                grid-template-cols: 1fr 1fr;
+                align-items: center;
+                padding: 100px 0;
+            }
+        }
+        .tagline {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #4a90e2;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 8px;
+        }
+        h1 {
+            font-size: 36px;
+            font-weight: 300;
+            line-height: 1.2;
+            color: #ffffff;
+            margin-bottom: 24px;
+        }
+        h1 span {
+            font-weight: 600;
+            background: linear-gradient(to right, #92623e, #4a90e2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .desc {
+            color: #9ca3af;
+            font-weight: 300;
+            margin-bottom: 32px;
+            max-w: 450px;
+        }
+        .link-cta {
+            color: #ffffff;
+            text-decoration: none;
+            border-bottom: 2px solid #92623e;
+            padding-bottom: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+        .link-cta:hover { color: #4a90e2; border-color: #4a90e2; }
+        
+        /* CONTENEDORES CON TRANSPARENCIA */
+        .box-transparente {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 32px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .hero-img-placeholder {
+            aspect-ratio: 4/3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* SECCIONES COMPONENTES */
+        section {
+            padding: 80px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .section-title {
+            margin-bottom: 40px;
+        }
+        .section-title span {
+            font-size: 12px;
+            color: #4a90e2;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+        .section-title h2 {
+            font-size: 28px;
+            font-weight: 300;
+            color: #ffffff;
+            margin-top: 8px;
+        }
+
+        /* GRILLA RESPONSIVA DE COLORES (2 columnas en celular, 4 en PC) */
+        .grid-colores {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        @media (min-width: 768px) {
+            .grid-colores { grid-template-columns: repeat(4, 1fr); }
+        }
+        .card-color {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .card-color:hover { border-color: #4a90e2; transform: translateY(-2px); }
+        .muestras-img {
+            width: 100%;
+            aspect-ratio: 1;
+            margin-bottom: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* GRILLA DE PLACAS */
+        .grid-placas {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+        @media (min-width: 768px) {
+            .grid-placas { grid-template-columns: repeat(3, 1fr); }
+        }
+        .card-placa {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 32px;
+            text-align: left;
+        }
+        .card-placa span { color: #92623e; font-family: monospace; font-size: 14px; }
+        .card-placa h3 { color: #ffffff; margin: 12px 0; font-size: 18px; font-weight: 500; }
+        .card-placa p { color: #9ca3af; font-size: 14px; font-weight: 300; }
+
+        /* FORMULARIO COTIZADOR REFINADO */
+        .max-w-3xl { max-width: 700px; margin: 0 auto; }
+        form { display: flex; flex-direction: column; gap: 24px; text-align: left; }
+        .form-group { display: flex; flex-direction: column; gap: 8px; }
+        .form-row { display: grid; grid-template-columns: 1fr; gap: 16px; }
+        @media (min-width: 768px) {
+            .form-row { grid-template-columns: 1fr 1fr; }
+            .form-triple { grid-template-columns: repeat(3, 1fr) !important; }
+        }
+        .form-triple { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        
+        label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #9ca3af; font-weight: 600; }
+        input, select {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 14px;
+            color: #ffffff;
+            font-size: 14px;
+            width: 100%;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        input:focus, select:focus { border-color: #4a90e2; }
+        .w-full-btn { width: 100%; padding: 16px; font-size: 13px; margin-top: 12px; }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            font-size: 12px;
+            color: #4b5563;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
     </style>
 </head>
-<body class="antialiased min-h-screen">
+<body>
 
-    <!-- Navegación con transparencias refinadas -->
-    <nav class="border-b border-gray-800/50 bg-[#0b0f19]/70 backdrop-blur-md sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="#" class="text-xl font-semibold tracking-widest text-white flex items-center gap-2">
-                <span class="text-[#92623e]">MO</span>MAF
-            </a>
-            <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-400">
-                <a href="#colores" class="hover:text-[#4a90e2] transition-colors">Colores</a>
-                <a href="#placas" class="hover:text-[#4a90e2] transition-colors">Placas</a>
-                <a href="#cotizador" class="hover:text-[#4a90e2] transition-colors">Cotizador</a>
+    <!-- Navegación -->
+    <nav>
+        <div class="max-w-6xl nav-container">
+            <a href="#" class="logo"><span>MO</span>MAF</a>
+            <div class="nav-links">
+                <a href="#colores">Colores</a>
+                <a href="#placas">Placas</a>
+                <a href="#cotizador">Cotizador</a>
             </div>
-            <a href="#cotizador" class="bg-gradient-to-r from-[#825330] to-[#92623e] text-white text-xs uppercase tracking-wider px-5 py-3 font-medium hover:from-[#4a90e2] hover:to-[#357abd] transition-all duration-300">Cotizar Ahora</a>
+            <a href="#cotizador" class="btn-premium">Cotizar Ahora</a>
         </div>
     </nav>
 
     <!-- Sección Principal (Héroe) -->
-    <header class="max-w-6xl mx-auto px-6 py-20 md:py-32 grid md:grid-cols-2 gap-12 items-center">
-        <div class="space-y-6">
-            <span class="text-xs font-semibold uppercase tracking-widest text-[#4a90e2]">Mobiliario Exclusivo en Melamina</span>
-            <h1 class="text-4xl md:text-5xl font-light tracking-tight leading-tight text-white">
-                Diseño minimalista.<br>
-                <span class="font-medium bg-gradient-to-r from-[#92623e] to-[#4a90e2] bg-clip-text text-transparent">Precisión artesanal.</span>
-            </h1>
-            <p class="text-gray-400 font-light max-w-md leading-relaxed">
-                En MOMAF fusionamos la nobleza de las texturas maderadas con la elegancia del negro profundo y destellos azules sutiles. Proyectá tu mueble ideal hoy mismo.
-            </p>
-            <div class="pt-2">
-                <a href="#cotizador" class="inline-flex items-center gap-2 border-b border-[#92623e] pb-2 text-sm font-medium tracking-wider uppercase text-white hover:text-[#4a90e2] hover:border-[#4a90e2] transition-all">Iniciar cotización →</a>
-            </div>
+    <header class="max-w-6xl">
+        <div>
+            <span class="tagline">Mobiliario Exclusivo en Melamina</span>
+            <h1>Diseño minimalista.<br><span>Precisión artesanal.</span></h1>
+            <p class="desc">En MOMAF fusionamos la nobleza de las texturas maderadas con la elegancia del negro profundo y destellos azules sutiles. Proyectá tu mueble ideal hoy mismo.</p>
+            <a href="#cotizador" class="link-cta">Iniciar cotización →</a>
         </div>
-        <!-- Contenedor transparente con estética de taller moderno -->
-        <div class="bg-gradient-to-br from-gray-900/40 to-black/40 border border-gray-800/40 backdrop-blur-md aspect-[4/3] w-full flex flex-col items-center justify-center p-8 rounded-lg relative overflow-hidden group">
-            <div class="absolute inset-0 bg-gradient-to-tr from-[#4a90e2]/5 to-[#92623e]/5 opacity-100"></div>
-            <span class="text-xs uppercase tracking-widest font-mono text-[#92623e] mb-2">[ Espacio para Render o Foto ]</span>
-            <p class="text-xs text-gray-500 text-center max-w-xs font-light">Colocá acá la imagen de tu mejor cocina instalada, vestidor o mueble de diseño.</p>
+        <div class="box-transparente hero-img-placeholder">
+            <span style="color: #92623e; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; margin-bottom: 8px;">[ Espacio para Foto de Cocina / Vestidor ]</span>
+            <p style="font-size: 12px; color: #6b7280; max-w: 280px; font-weight: 300;">Reemplazá este recuadro por la foto real de tu mejor proyecto terminado.</p>
         </div>
     </header>
 
     <!-- Muestrario de Colores Interactivo -->
-    <section id="colores" class="max-w-6xl mx-auto px-6 py-20 border-t border-gray-800/30">
-        <div class="mb-12">
-            <span class="text-xs font-semibold uppercase tracking-widest text-[#4a90e2]">01 / Materiales de Vanguardia</span>
-            <h2 class="text-3xl font-light text-white mt-2">Catálogo de Tonos Seleccionados</h2>
-            <p class="text-gray-400 text-sm font-light mt-1">Hacé clic sobre una muestra para fijarla en el formulario de cotización inferior.</p>
-        </div>
-        
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <!-- Negro Deep -->
-            <div class="group cursor-pointer bg-black/30 border border-gray-800/60 p-4 hover:border-[#4a90e2]/50 transition-all duration-300 backdrop-blur-md" onclick="seleccionarColor('Negro Profundo', 'Egger PerfectSense')">
-                <div class="bg-[#111111] aspect-square w-full mb-4 shadow-inner relative">
-                    <div class="absolute inset-0 border border-white/5"></div>
-                </div>
-                <h3 class="text-sm font-medium text-white group-hover:text-[#4a90e2] transition-colors">Negro Profundo</h3>
-                <p class="text-xs text-gray-400 font-light">Egger — Mate Premium</p>
-            </div>
-            <!-- Azul Oxford -->
-            <div class="group cursor-pointer bg-black/30 border border-gray-800/60 p-4 hover:border-[#4a90e2]/50 transition-all duration-300 backdrop-blur-md" onclick="seleccionarColor('Azul Oxford', 'Faplac Línea Étnica')">
-                <div class="bg-[#1c2434] aspect-square w-full mb-4 shadow-inner relative">
-                    <div class="absolute inset-0 border border-white/5"></div>
-                </div>
-                <h3 class="text-sm font-medium text-white group-hover:text-[#4a90e2] transition-colors">Azul Oxford</h3>
-                <p class="text-xs text-gray-400 font-light">Faplac — Acabado Mate</p>
-            </div>
-            <!-- Roble Escandinavo -->
-            <div class="group cursor-pointer bg-black/30 border border-gray-800/60 p-4 hover:border-[#92623e]/50 transition-all duration-300 backdrop-blur-md" onclick="seleccionarColor('Roble Escandinavo', 'Egger Texturado')">
-                <div class="bg-[#a68059] aspect-square w-full mb-4 shadow-inner relative">
-                    <div class="absolute inset-0 border border-white/5"></div>
-                </div>
-                <h3 class="text-sm font-medium text-white group-hover:text-[#92623e] transition-colors">Roble Escandinavo</h3>
-                <p class="text-xs text-gray-400 font-light">Egger — Símil Madera Natural</p>
-            </div>
-            <!-- Nogal Habano -->
-            <div class="group cursor-pointer bg-black/30 border border-gray-800/60 p-4 hover:border-[#92623e]/50 transition-all duration-300 backdrop-blur-md" onclick="seleccionarColor('Nogal Habano', 'Faplac Hilados')">
-                <div class="bg-[#5c4033] aspect-square w-full mb-4 shadow-inner relative">
-                    <div class="absolute inset-0 border border-white/5"></div>
-                </div>
-                <h3 class="text-sm font-medium text-white group-hover:text-[#92623e] transition-colors">Nogal Habano</h3>
-                <p class="text-xs text-gray-400 font-light">Faplac — Textura Profunda</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tipos de Placa -->
-    <section id="placas" class="bg-black/40 border-y border-gray-800/40 backdrop-blur-md py-20">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="mb-12">
-                <span class="text-xs font-semibold uppercase tracking-widest text-[#92623e]">02 / Ingeniería del Mueble</span>
-                <h2 class="text-3xl font-light text-white mt-2">Especificaciones de Placas</h2>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-gray-900/30 p-8 border border-gray-800/50 hover:border-gray-700/50 transition-all">
-                    <span class="text-xs font-mono text-[#4a90e2]">18 mm Estándar</span>
-                    <h3 class="text-lg font-medium text-white mt-2 mb-3">Sustrato MDF / MDP</h3>
-                    <p class="text-gray-400 text-sm font-light leading-relaxed">Estructura interior robusta y frentes con cortes limpios a escuadra, asegurando un ensamble milimétrico sin imperfecciones.</p>
-                </div>
-                <div class="bg-gray-900/30 p-8 border border-gray-800/50 hover:border-gray-700/50 transition-all">
-                    <span class="text-xs font-mono text-[#92623e]">18 mm Especial</span>
-                    <h3 class="text-lg font-medium text-white mt-2 mb-3">Protección Hidrófuga (RH)</h3>
-                    <p class="text-gray-400 text-sm font-light leading-relaxed">Placas con resinas especiales repelentes al agua. Indispensables en bajomesadas y amoblamientos de baños.</p>
-                </div>
-                <div class="bg-gray-900/30 p-8 border border-gray-800/50 hover:border-gray-700/50 transition-all">
-                    <span class="text-xs font-mono text-gray-500">5 mm / 9 mm</span>
-                    <h3 class="text-lg font-medium text-white mt-2 mb-3">Fondos Estructurales</h3>
-                    <p class="text-gray-400 text-sm font-light leading-relaxed">Traseras encastradas que otorgan rigidez al módulo y evitan falsos encuadres, garantizando cajoneras perfectas.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Cotizador Inteligente -->
-    <section id="cotizador" class="max-w-3xl mx-auto px-6 py-20">
-        <div class="text-center mb-12">
+    <section id="colores">
+        <div class="max-w-6xl">
+            <div class="section-title">
+                <span>01 / Materiales de Vanguardia</span>
